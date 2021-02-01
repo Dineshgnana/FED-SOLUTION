@@ -1,0 +1,106 @@
+<!-- main app container -->
+<div class="email-form-container">
+  <div class="email-form-header">
+    <h1>Sign up for email updates</h1>
+    <div>*Indicates Required Field</div>
+  </div>
+
+  <div>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" novalidate>
+      <div class="errors">
+        <div *ngIf="submitted && f.firstName.errors">
+          <div *ngIf="f.firstName.errors.required">First Name is required</div>
+        </div>
+
+        <div *ngIf="submitted && f.lastName.errors">
+          <div *ngIf="f.lastName.errors.required">Last Name is required</div>
+        </div>
+
+        <div *ngIf="submitted && f.email.errors">
+          <div *ngIf="f.email.errors.required">Email is required</div>
+          <div *ngIf="f.email.errors.email">
+            Email must be a valid email address
+          </div>
+        </div>
+
+        <div *ngIf="submitted && f.fieldName.errors">
+          <div *ngIf="f.fieldName.errors.required">
+            Checkbox is required, select atleast one value.
+          </div>
+        </div>
+      </div>
+      <div class="form-grid">
+        <div class="form-group">
+          <label>First Name*</label>
+          <input
+            aria-label="First Name"
+            type="text"
+            formControlName="firstName"
+            class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }"
+          />
+        </div>
+
+        <div class="form-group">
+          <label>Last Name*</label>
+          <input
+            aria-label="Last Name"
+            type="text"
+            formControlName="lastName"
+            class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }"
+          />
+        </div>
+
+        <div class="form-group">
+          <label>Email Address*</label>
+          <input
+            aria-label="Email Address"
+            type="text"
+            formControlName="email"
+            class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+          />
+        </div>
+
+        <div class="form-group">
+          <label>Organization</label>
+          <input type="text" aria-label="Organization" formControlName="org" class="form-control" />
+        </div>
+
+        <div class="form-group">
+          <label>EU RESIDENT*</label>
+          <select
+            aria-label="Eu Resident"
+            formControlName="euResident"
+            [ngClass]="{ 'is-invalid': submitted && f.euResident.errors }"
+          >
+            <option value="">- SELECT ONE -</option>
+            <option value="YES">YES</option>
+            <option value="NO">NO</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-grid">
+        <div
+          class="form-group form-group--inline"
+          *ngFor="let fields of fieldsData; let i = index"
+        >
+          <label class="checkbox-container" >
+            {{ fields.name }}
+            <input
+              type="checkbox"
+              [value]="fields.value"
+              (change)="onCheckboxChange($event)"
+            />
+            <span class="checkmark"></span>
+          </label>
+        </div>
+      </div>
+      <div class="form-group form-group--inline">
+        <button class="btn btn--submit" aria-label="submit">SUBMIT</button>
+        <button class="btn" type="reset" (click)="onReset()" aria-label="reset">RESET</button>
+      </div>
+    </form>
+  </div>
+</div>

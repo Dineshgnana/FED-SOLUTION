@@ -1,0 +1,201 @@
+.email-form-container {
+  border-radius: 3px;
+  font-family: Arial, sans-serif;
+  max-width: 1000px;
+  width: 100%;
+  padding: 10px;
+  margin: auto;
+}
+
+.email-form-header {
+  border-radius: 3px;
+  margin: 5px 5px 25px 5px;
+  padding: 5px;
+
+  h1 {
+    font-size: 25px;
+    margin-bottom: 10px;
+    color: #000;
+  }
+}
+
+.form-grid {
+  margin-bottom: 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  @media only screen and (max-width: 767px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.errors {
+  color: red;
+  font-style: italic;
+  margin: 10px;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  padding: 10px;
+
+  &--inline {
+    flex-direction: row;
+  }
+
+  label {
+    margin-bottom: 15px;
+    text-transform: uppercase;
+  }
+
+  .checkbox-label {
+    margin-bottom: 0;
+  }
+
+  .btn {
+    padding: 10px 40px;
+    cursor: pointer;
+    border: 0px;
+    border-radius: 20px;
+    background: #fff;
+    color: #000;
+    margin-right: 10px;
+    box-shadow: 4px 4px 6px grey;
+    &--submit {
+      background: #790497;
+      color: #fff;
+      font-weight: bold;
+    }
+  }
+
+  select {
+    background-color: #ffffff;
+    border: 1px solid #d6d9dc;
+    border-radius: 3px;
+    width: auto;
+    padding: 7px;
+    font-size: 12px;
+    outline: 2px solid rgba(47, 255, 134, 0.2);
+    &:focus {
+      outline: 2px solid rgba(47, 255, 134, 0.6);
+    }
+  }
+
+  input[type="text"],
+  .form-group input[type="email"] {
+    background-color: #ffffff;
+    border: 1px solid #d6d9dc;
+    border-radius: 3px;
+    width: 100%;
+    padding: 7px;
+    font-size: 12px;
+    outline: 2px solid rgba(47, 255, 134, 0.2);
+
+    &:focus {
+      outline: 2px solid rgba(47, 255, 134, 0.6);
+    }
+  }
+
+  input[type="text"]:invalid,
+  input[type="email"]:invalid {
+    border: 1px solid #d55c5f;
+    color: #d55c5f;
+    box-shadow: none; /* Remove default red glow in Firefox */
+  }
+
+  .is-invalid {
+    outline: 2px solid rgba(255, 47, 47, 0.6) !important;
+    background: #ffe8e8 !important;
+  }
+}
+
+.checkbox-container {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 12px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 22px;
+    width: 22px;
+    border-radius: 2px;
+    background-color: #fff;
+    outline: 2px solid rgba(47, 255, 134, 0.2);
+  }
+
+  input:focus + .checkmark{
+    outline: 2px solid rgba(47, 255, 134, 1);
+  }
+
+  input:checked ~ .checkmark {
+    background-color: #790497;
+    border: 0px;
+    outline: 0px;
+  }
+
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+
+  .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 3px;
+    height: 8px;
+    border: solid #fff;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+
+  input:checked ~ .checkmark:after {
+    display: block;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .form-group {
+    label {
+      margin-top: 7px;
+      padding-right: 20px;
+    }
+    .instructions {
+      margin-left: 120px;
+    }
+    .checkbox-label {
+      margin-left: 120px;
+      width: auto;
+    }
+    input[type="text"],
+    input[type="email"],
+    select,
+    textarea {
+      width: 100%;
+      height: initial;
+    }
+  }
+}
